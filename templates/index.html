@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en" data-bs-theme="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gearbox Component Inspector</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        .video-container {
+            position: relative;
+            background-color: #000;
+            min-height: 480px;
+        }
+        .video-placeholder {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            color: #6c757d;
+        }
+        #videoFeed {
+            width: 100%;
+            height: auto;
+            max-height: 500px;
+        }
+    </style>
+</head>
+<body>
+    <nav class="navbar navbar-dark bg-dark">
+        <div class="container-fluid">
+            <span class="navbar-brand mb-0 h1">Gearbox Component Inspector 🔬</span>
+        </div>
+    </nav>
+
+    <div class="container mt-4">
+        <!-- Mode selection tabs -->
+        <ul class="nav nav-tabs" id="appModeTab" role="tablist">
+            <li class="nav-item" role="presentation">
+                <button class="nav-link active" id="upload-tab" data-bs-toggle="tab" data-bs-target="#upload-panel" type="button" role="tab">Image Upload</button>
+            </li>
+            <li class="nav-item" role="presentation">
+                <button class="nav-link" id="camera-tab" data-bs-toggle="tab" data-bs-target="#camera-panel" type="button" role="tab">Live Camera</button>
+            </li>
+        </ul>
+
+        <!-- Tab content -->
+        <div class="tab-content" id="appModeTabContent">
+            <!-- Image Upload Panel -->
+            <div class="tab-pane fade show active" id="upload-panel" role="tabpanel">
+                <div class="row mt-3">
+                    <div class="col-md-6">
+                        <div class="card">
+                            <h5 class="card-header">Upload Image for Analysis</h5>
+                            <div class="card-body">
+                                <p>Upload an image of the assembly part to check for components.</p>
+                                <input class="form-control" type="file" id="imageUpload" accept="image/*">
+                                <img id="imagePreview" src="https://via.placeholder.com/400x300.png?text=Image+Preview" class="img-fluid rounded mt-3" alt="Preview">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="card">
+                            <h5 class="card-header">Analysis Result</h5>
+                            <div class="card-body" id="resultsContainer">
+                                <div id="spinner" class="d-none text-center">
+                                    <div class="spinner-border text-primary" role="status"></div>
+                                    <p class="mt-2">Analyzing...</p>
+                                </div>
+                                <div id="resultsContent" class="text-center text-muted">
+                                    <p>Results will appear here.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Live Camera Panel -->
+            <div class="tab-pane fade" id="camera-panel" role="tabpanel">
+                 <div class="card mt-3">
+                    <h5 class="card-header">Live Assembly Analysis</h5>
+                    <div class="card-body">
+                        <p>Click 'Start Camera' to begin real-time analysis.</p>
+                        <button class="btn btn-success" id="startCamBtn">Start Camera</button>
+                        <button class="btn btn-danger d-none" id="stopCamBtn">Stop Camera</button>
+                        <div class="video-container rounded mt-3">
+                            <img id="videoFeed" src="" alt="Live Feed">
+                            <div id="videoPlaceholder" class="video-placeholder">
+                                <h5>Camera is off</h5>
+                            </div>
+                        </div>
+                    </div>
+                 </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="{{ url_for('static', filename='js/main.js') }}"></script>
+</body>
+</html>
