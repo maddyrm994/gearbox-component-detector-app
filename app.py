@@ -3,7 +3,7 @@ import cv2
 import numpy as np
 from flask import Flask, request, jsonify, render_template, Response
 from werkzeug.utils import secure_filename
-from tensorflow.keras.models import load_model
+from keras.models import load_model
 
 # --- Configuration ---
 UPLOAD_FOLDER = 'uploads'
